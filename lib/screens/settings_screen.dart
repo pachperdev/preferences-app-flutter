@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:preferences_app_flutter/widgets/widgets.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   static const String routerName = 'settings';
 
   const SettingsScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  late bool isDarkMode = false;
+  late int gender = 1;
+  late String name = 'Mauro';
 
   @override
   Widget build(BuildContext context) {
@@ -25,29 +34,41 @@ class SettingsScreen extends StatelessWidget {
             ),
             const Divider(),
             SwitchListTile.adaptive(
-              value: true,
+              value: isDarkMode,
               title: const Text('Darkmode'),
-              onChanged: (value) {},
+              onChanged: (value) {
+                isDarkMode = value;
+                setState(() {});
+              },
             ),
             const Divider(),
             RadioListTile(
               value: 1,
-              groupValue: 1,
+              groupValue: gender,
               title: const Text('Masculino'),
-              onChanged: (value) {},
+              onChanged: (value) {
+                gender = value ?? 1;
+                setState(() {});
+              },
             ),
-            const Divider(),
             RadioListTile(
-              value: 1,
-              groupValue: 1,
+              value: 2,
+              groupValue: gender,
               title: const Text('Femenino'),
-              onChanged: (value) {},
+              onChanged: (value) {
+                gender = value ?? 2;
+                setState(() {});
+              },
             ),
             const Divider(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TextFormField(
                 initialValue: 'Mauricio',
+                onChanged: (value) {
+                  name = value;
+                  setState(() {});
+                },
                 decoration: const InputDecoration(
                   labelText: 'Nombre',
                   helperText: 'Nombre del usuario',
