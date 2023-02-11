@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:preferences_app_flutter/screens/screens.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -13,7 +14,9 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.home),
             title: const Text('Home'),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushReplacementNamed(context, HomeScreen.routerName);
+            },
           ),
           ListTile(
             leading: const Icon(Icons.people),
@@ -23,7 +26,10 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.settings),
             title: const Text('Settings'),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushReplacementNamed(
+                  context, SettingsScreen.routerName);
+            },
           ),
         ],
       ),
